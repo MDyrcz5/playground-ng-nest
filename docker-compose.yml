@@ -1,0 +1,46 @@
+version: '3.8'
+networks:
+  corp:
+    driver: bridge
+services:
+  api:
+    container_name: api
+    build:
+      context: ./
+      cache_from:
+        - base-image:nx-base
+      dockerfile: ./apps/api/Dockerfile.nest
+      args:
+        NODE_ENV: 'development'
+        BUILD_FLAG: ''
+    image: api:nx-dev
+    ports:
+      - 4939:4939
+    environment:
+      NODE_ENV: 'development'
+      PORT: 4939
+    networks:
+      - corp
+    restart: on-failure
+
+  playground-ng-nest:
+    container_name: playground-ng-nest
+    build:
+      context: ./
+      cache_from:
+        - nginx:1.19.2
+      dockerfile: ./apps/playground-ng-nest/Dockerfile.angular
+      args:
+        NODE_ENV: 'development'
+        BUILD_FLAG: ''
+    image: playground-ng-nest:nx-dev
+    ports:
+      - 4900:80
+    links:
+      - api
+    environment:
+      NODE_ENV: 'development'
+      PORT: 4900
+    networks:
+      - corp
+    restart: on-failure
