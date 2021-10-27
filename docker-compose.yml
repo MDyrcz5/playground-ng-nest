@@ -35,12 +35,16 @@ services:
         BUILD_FLAG: ''
     image: playground-ng-nest:nx-dev
     ports:
-      - 4900:80
+      - 4200:80
     links:
       - api
     environment:
       NODE_ENV: 'development'
-      PORT: 4900
+      PORT: 4200
     networks:
       - corp
     restart: on-failure
+
+networks:
+  corp:
+    driver: bridge
