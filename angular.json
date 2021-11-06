@@ -84,10 +84,7 @@
             "polyfills": "apps/playground-ng-nest/src/polyfills.ts",
             "tsConfig": "apps/playground-ng-nest/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "apps/playground-ng-nest/src/favicon.ico",
-              "apps/playground-ng-nest/src/assets"
-            ],
+            "assets": ["apps/playground-ng-nest/src/favicon.ico", "apps/playground-ng-nest/src/assets"],
             "styles": ["apps/playground-ng-nest/src/styles.scss"],
             "scripts": [],
             "customWebpackConfig": {
@@ -152,10 +149,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/playground-ng-nest/src/**/*.ts",
-              "apps/playground-ng-nest/src/**/*.html"
-            ]
+            "lintFilePatterns": ["apps/playground-ng-nest/src/**/*.ts", "apps/playground-ng-nest/src/**/*.html"]
           }
         },
         "test": {

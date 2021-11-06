@@ -1,6 +1,6 @@
-const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
-const mf = require('@angular-architects/module-federation/webpack');
-const path = require('path');
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin')
+const mf = require('@angular-architects/module-federation/webpack')
+const path = require('path')
 
 /**
  * We use the NX_TSCONFIG_PATH environment variable when using the @nrwl/angular:webpack-browser
@@ -11,19 +11,17 @@ const path = require('path');
  * This NX_TSCONFIG_PATH environment variable is set by the @nrwl/angular:webpack-browser and it contains
  * the location of the generated temporary tsconfig file.
  */
-const tsConfigPath =
-  process.env.NX_TSCONFIG_PATH ??
-  path.join(__dirname, '../../tsconfig.base.json');
+const tsConfigPath = process.env.NX_TSCONFIG_PATH ?? path.join(__dirname, '../../tsconfig.base.json')
 
-const workspaceRootPath = path.join(__dirname, '../../');
-const sharedMappings = new mf.SharedMappings();
+const workspaceRootPath = path.join(__dirname, '../../')
+const sharedMappings = new mf.SharedMappings()
 sharedMappings.register(
   tsConfigPath,
   [
     /* mapped paths to share */
   ],
-  workspaceRootPath
-);
+  workspaceRootPath,
+)
 
 module.exports = {
   output: {
@@ -52,4 +50,4 @@ module.exports = {
     }),
     sharedMappings.getPlugin(),
   ],
-};
+}
