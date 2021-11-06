@@ -1,6 +1,4 @@
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Message } from '@playground-ng-nest/api-interfaces';
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'playground-ng-nest-root',
@@ -8,6 +6,5 @@ import { Message } from '@playground-ng-nest/api-interfaces';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  hello$ = this.http.get<Message>('/api/hello');
-  constructor(private http: HttpClient) {}
+  title = 'playground-ng-nest'
 }

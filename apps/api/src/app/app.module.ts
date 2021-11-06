@@ -1,10 +1,10 @@
-import { Module } from '@nestjs/common';
-
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { Module } from '@nestjs/common'
+import { CoreModule } from '@playground-ng-nest/core'
+import { AppController } from './app.controller'
+import { AppService } from './app.service'
 
 @Module({
-  imports: [],
+  imports: [CoreModule],
   controllers: [AppController],
   providers: [AppService],
 })

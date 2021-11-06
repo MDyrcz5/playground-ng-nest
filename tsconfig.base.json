@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@playground-ng-nest/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@playground-ng-nest/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@playground-ng-nest/core": ["libs/core/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

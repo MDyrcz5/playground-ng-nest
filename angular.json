@@ -68,6 +68,29 @@
       },
       "tags": []
     },
+    "core": {
+      "root": "libs/core",
+      "sourceRoot": "libs/core/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/core/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/core"],
+          "options": {
+            "jestConfig": "libs/core/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
     "playground-ng-nest": {
       "projectType": "application",
       "root": "apps/playground-ng-nest",
@@ -75,7 +98,7 @@
       "prefix": "playground-ng-nest",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@nrwl/angular:webpack-browser",
           "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/playground-ng-nest",
@@ -84,12 +107,12 @@
             "polyfills": "apps/playground-ng-nest/src/polyfills.ts",
             "tsConfig": "apps/playground-ng-nest/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "apps/playground-ng-nest/src/favicon.ico",
-              "apps/playground-ng-nest/src/assets"
-            ],
+            "assets": ["apps/playground-ng-nest/src/favicon.ico", "apps/playground-ng-nest/src/assets"],
             "styles": ["apps/playground-ng-nest/src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "apps/playground-ng-nest/webpack.config.js"
+            }
           },
           "configurations": {
             "production": {
@@ -111,7 +134,10 @@
                   "with": "apps/playground-ng-nest/src/environments/environment.prod.ts"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "customWebpackConfig": {
+                "path": "apps/playground-ng-nest/webpack.prod.config.js"
+              }
             },
             "development": {
               "buildOptimizer": false,
@@ -125,7 +151,7 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@nrwl/angular:webpack-server",
           "configurations": {
             "production": {
               "browserTarget": "playground-ng-nest:build:production"
@@ -135,9 +161,7 @@
             }
           },
           "defaultConfiguration": "development",
-          "options": {
-            "proxyConfig": "apps/playground-ng-nest/proxy.conf.json"
-          }
+          "options": {}
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -148,10 +172,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/playground-ng-nest/src/**/*.ts",
-              "apps/playground-ng-nest/src/**/*.html"
-            ]
+            "lintFilePatterns": ["apps/playground-ng-nest/src/**/*.ts", "apps/playground-ng-nest/src/**/*.html"]
           }
         },
         "test": {
@@ -160,6 +181,12 @@
           "options": {
             "jestConfig": "apps/playground-ng-nest/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "serve-mfe": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": ["nx serve playground-ng-nest"]
           }
         }
       },
@@ -174,8 +201,7 @@
           "builder": "@nrwl/cypress:cypress",
           "options": {
             "cypressConfig": "apps/playground-ng-nest-e2e/cypress.json",
-            "devServerTarget": "playground-ng-nest:serve:development",
-            "tsConfig": "apps/playground-ng-nest-e2e/tsconfig.json"
+            "devServerTarget": "playground-ng-nest:serve:development"
           },
           "configurations": {
             "production": {
