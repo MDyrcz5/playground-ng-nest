@@ -15,6 +15,6 @@ export class Restaurant {
   @Field({ nullable: true })
   imageUrl?: String;
 
-  @Field((type) => Location, { nullable: true })
-  location?: Location;
+  @Field((type) => [Location], { nullable: true })
+  locations?: Location[];
 }

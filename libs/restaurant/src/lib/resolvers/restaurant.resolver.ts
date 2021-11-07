@@ -1,8 +1,8 @@
-import { RestaurantService } from './restaurant.service';
+import { RestaurantService } from '../restaurant.service';
 import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
-import { Restaurant } from './models/restaurant';
-import { CreateRestaurantInput } from './dto/create-restaurant.input';
-import { UpdateRestaurantInput } from './dto/update-restaurant.input';
+import { Restaurant } from '../models/restaurant';
+import { CreateRestaurantInput } from '../dto/create-restaurant.input';
+import { UpdateRestaurantInput } from '../dto/update-restaurant.input';
 
 @Resolver()
 export class RestaurantResolver {
