@@ -219,6 +219,29 @@
       },
       "tags": [],
       "implicitDependencies": ["playground-ng-nest"]
+    },
+    "restaurant": {
+      "root": "libs/restaurant",
+      "sourceRoot": "libs/restaurant/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/restaurant/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/restaurant"],
+          "options": {
+            "jestConfig": "libs/restaurant/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
     }
   }
 }
