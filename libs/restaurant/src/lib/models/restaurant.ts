@@ -3,7 +3,7 @@ import { Field, ObjectType } from '@nestjs/graphql';
 @ObjectType()
 export class Restaurant {
   @Field({ nullable: true })
-  guid?: String;
+  id?: String;
 
   @Field({ nullable: true })
   name?: String;

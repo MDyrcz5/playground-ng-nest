@@ -14,8 +14,8 @@ export class RestaurantResolver {
   }
 
   @Query(() => Restaurant, { nullable: true })
-  restaurant(@Args('guid') guid: string) {
-    return this.restaurantService.getRestaurant(guid);
+  restaurant(@Args('id') id: string) {
+    return this.restaurantService.getRestaurant(id);
   }
 
   @Mutation(() => Restaurant, { nullable: true })
@@ -24,12 +24,12 @@ export class RestaurantResolver {
   }
 
   @Mutation(() => Restaurant, { nullable: true })
-  updateRestaurant(@Args('input') input: UpdateRestaurantInput, @Args('guid') guid: string) {
-    return this.restaurantService.updateRestaurant(input, guid);
+  updateRestaurant(@Args('input') input: UpdateRestaurantInput, @Args('id') id: string) {
+    return this.restaurantService.updateRestaurant(input, id);
   }
 
   @Mutation(() => Boolean, { nullable: true })
-  deleteRestaurant(@Args('guid') guid: string) {
-    return this.restaurantService.deleteRestaurant(guid);
+  deleteRestaurant(@Args('id') id: string) {
+    return this.restaurantService.deleteRestaurant(id);
   }
 }

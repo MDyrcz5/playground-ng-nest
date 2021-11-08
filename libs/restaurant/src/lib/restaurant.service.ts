@@ -1,59 +1,45 @@
 import { UpdateRestaurantInput } from './dto/update-restaurant.input';
-import { Injectable } from '@nestjs/common';
-import { randomInt } from 'crypto';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateRestaurantInput } from './dto/create-restaurant.input';
 import { Restaurant } from './models/restaurant';
+import { DataService } from 'libs/data/src/lib/data.service';
 
 @Injectable()
 export class RestaurantService {
-  items: Restaurant[] = [
-    {
-      guid: 'test-1',
-      name: 'McDonalds',
-    },
-    { guid: 'test-2', name: 'Nulio' },
-    { guid: 'test-3', name: 'Piko' },
-  ];
+  constructor(private readonly dataService: DataService) {}
 
-  public getRestaurants(): Restaurant[] {
-    return this.items;
+  public getRestaurants() {
+    return this.dataService.restaurant.findMany();
   }
 
-  public getRestaurant(guid: string): Restaurant {
-    return this.items.find((item) => item.guid === guid);
-  }
-
-  public createRestaurant(input: CreateRestaurantInput): Restaurant {
-    const newRestaurant = {
-      guid: `test-${randomInt(4, 50)}`,
-      ...input,
-    };
-    this.items.push(newRestaurant);
-    return newRestaurant;
-  }
-
-  public updateRestaurant(input: UpdateRestaurantInput, guid: string): Restaurant {
-    const restaurant = this.getRestaurant(guid);
-    const updatedRestaurant = {
-      ...restaurant,
-      ...input,
-    };
-    this.items = this.items.map((item) => {
-      if (item.guid === guid) {
-        return updatedRestaurant;
-      }
-      return item;
-    });
-
-    return updatedRestaurant;
-  }
-
-  public deleteRestaurant(guid: string): Boolean {
-    const restaurant = this.getRestaurant(guid);
+  public async getRestaurant(id: string) {
+    const restaurant = await this.dataService.restaurant.findFirst({ where: { id } });
     if (!restaurant) {
-      return false;
+      throw new NotFoundException(`Restaurant with id ${id} doesn't exists`);
     }
-    this.items = this.items.filter((item) => item.guid !== guid);
-    return true;
+    return restaurant;
+  }
+
+  public createRestaurant(input: CreateRestaurantInput) {
+    return this.dataService.restaurant.create({
+      data: { ...input },
+    });
+  }
+
+  public async updateRestaurant(input: UpdateRestaurantInput, id: string) {
+    const restaurant = await this.getRestaurant(id);
+    return this.dataService.restaurant.update({
+      where: { id: restaurant.id },
+      data: { ...input },
+    });
+  }
+
+  public async deleteRestaurant(id: string): Promise<boolean> {
+    const deletedItem = await this.dataService.restaurant.delete({
+      where: {
+        id,
+      },
+    });
+    return !!deletedItem;
   }
 }
