@@ -1,4 +1,3 @@
-import { CreateLocationInput } from './dto/update-location.input';
 import { UpdateRestaurantInput } from './dto/update-restaurant.input';
 import { Injectable } from '@nestjs/common';
 import { randomInt } from 'crypto';
@@ -11,10 +10,9 @@ export class RestaurantService {
     {
       guid: 'test-1',
       name: 'McDonalds',
-      locations: [{ id: '1', address: 'Random street 22', coordinates: ['34', '12'] }],
     },
-    { guid: 'test-2', name: 'Nulio', locations: [{ id: '1', address: 'Random street 32', coordinates: ['54', '32'] }] },
-    { guid: 'test-3', name: 'Piko', locations: [{ id: '1', address: 'Random street 42', coordinates: ['14', '67'] }] },
+    { guid: 'test-2', name: 'Nulio' },
+    { guid: 'test-3', name: 'Piko' },
   ];
 
   public getRestaurants(): Restaurant[] {
@@ -58,12 +56,4 @@ export class RestaurantService {
     this.items = this.items.filter((item) => item.guid !== guid);
     return true;
   }
-
-  // public createLocation(input: CreateLocationInput, restaurantGuid: string): Location {
-  //   const newLocation = {
-  //     id: Date.now().toString(),
-  //     ...input,
-  //   };
-  //   const restaurant = this.getRestaurant(restaurantGuid);
-  // }
 }

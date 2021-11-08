@@ -1,5 +1,4 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Location } from './location';
 
 @ObjectType()
 export class Restaurant {
@@ -14,7 +13,4 @@ export class Restaurant {
 
   @Field({ nullable: true })
   imageUrl?: String;
-
-  @Field((type) => [Location], { nullable: true })
-  locations?: Location[];
 }
