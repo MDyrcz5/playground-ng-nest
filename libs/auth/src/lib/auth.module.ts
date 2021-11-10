@@ -1,3 +1,4 @@
+import { GqlAuthGuard } from './guards/gql-auth-guard';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { DataModule } from '@playground-ng-nest/data';
 import { AuthService } from './auth.service';
@@ -12,7 +13,7 @@ import { JwtModule } from '@nestjs/jwt';
     }),
   ],
   controllers: [],
-  providers: [AuthResolver, AuthService, JwtStrategy],
+  providers: [AuthResolver, AuthService, JwtStrategy, GqlAuthGuard],
   exports: [],
 })
 export class AuthModule {}
