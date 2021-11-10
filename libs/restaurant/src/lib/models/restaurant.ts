@@ -1,3 +1,4 @@
+import { User } from '@playground-ng-nest/auth';
 import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
@@ -13,4 +14,7 @@ export class Restaurant {
 
   @Field({ nullable: true })
   imageUrl?: String;
+
+  @Field({ nullable: true })
+  author?: User;
 }
