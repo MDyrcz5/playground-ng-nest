@@ -1,7 +1,6 @@
 import { UpdateRestaurantInput } from './dto/update-restaurant.input';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateRestaurantInput } from './dto/create-restaurant.input';
-import { Restaurant } from './models/restaurant';
 import { DataService } from 'libs/data/src/lib/data.service';
 
 @Injectable()
@@ -13,7 +12,7 @@ export class RestaurantService {
   }
 
   public async getRestaurant(id: string) {
-    const restaurant = await this.dataService.restaurant.findFirst({ where: { id } });
+    const restaurant = await this.dataService.restaurant.findFirst({ where: { id }, include: { author: true } });
     if (!restaurant) {
       throw new NotFoundException(`Restaurant with id ${id} doesn't exists`);
     }
@@ -22,7 +21,7 @@ export class RestaurantService {
 
   public createRestaurant(userId: string, input: CreateRestaurantInput) {
     return this.dataService.restaurant.create({
-      data: { ...input },
+      data: { ...input, author: { connect: { id: userId } } },
     });
   }
 
