@@ -20,13 +20,13 @@ export class RestaurantService {
     return restaurant;
   }
 
-  public createRestaurant(input: CreateRestaurantInput) {
+  public createRestaurant(userId: string, input: CreateRestaurantInput) {
     return this.dataService.restaurant.create({
       data: { ...input },
     });
   }
 
-  public async updateRestaurant(input: UpdateRestaurantInput, id: string) {
+  public async updateRestaurant(userId: string, input: UpdateRestaurantInput, id: string) {
     const restaurant = await this.getRestaurant(id);
     return this.dataService.restaurant.update({
       where: { id: restaurant.id },
@@ -34,7 +34,8 @@ export class RestaurantService {
     });
   }
 
-  public async deleteRestaurant(id: string): Promise<boolean> {
+  public async deleteRestaurant(userId: string, id: string): Promise<boolean> {
+    // TODO: Check if user can delete a restaurant
     const deletedItem = await this.dataService.restaurant.delete({
       where: {
         id,
