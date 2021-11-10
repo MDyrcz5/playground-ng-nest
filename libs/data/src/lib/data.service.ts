@@ -24,9 +24,10 @@ export class DataService extends PrismaClient implements OnModuleInit, OnModuleD
 
   public async createUser(email: string, password: string) {
     const user = await this.user.create({ data: { email, password } });
+    return user;
   }
 
-  private async findUserByEmail(email: string) {
+  public async findUserByEmail(email: string) {
     return this.user.findUnique({
       where: {
         email,

@@ -11,6 +11,6 @@ export class AuthRegisterInput {
   @Field({ nullable: true })
   firstName?: string;
 
-  @Field()
+  @Field({ nullable: true })
   lastName?: string;
 }
