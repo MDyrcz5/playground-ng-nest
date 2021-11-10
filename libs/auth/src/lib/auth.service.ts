@@ -1,12 +1,13 @@
+import { validationSchema } from './../../../core/src/lib/config/validation';
 import { AuthHelper } from './auth.helper';
 import { DataService } from 'libs/data/src/lib/data.service';
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import { AuthLoginInput } from './dto';
-import { AuthRegisterInput } from './dto';
+import { AuthLoginInput, AuthRegisterInput, JwtDto } from './dto';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly dataService: DataService) {}
+  constructor(private readonly dataService: DataService, private readonly jwtService: JwtService) {}
 
   public async login(input: AuthLoginInput) {
     const user = await this.dataService.findUserByEmail(input.email);
@@ -33,7 +34,12 @@ export class AuthService {
     return { user: createdUser, token: this.signToken(createdUser.id) };
   }
 
+  public async validateUser(userId: string) {
+    return this.dataService.findUserById(userId);
+  }
+
   private signToken(userId: string) {
-    return 'TEMP TOKEN ID' + userId;
+    const payload: JwtDto = { userId };
+    return this.jwtService.sign(payload);
   }
 }

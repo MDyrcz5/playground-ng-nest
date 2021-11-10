@@ -35,6 +35,14 @@ export class DataService extends PrismaClient implements OnModuleInit, OnModuleD
     });
   }
 
+  public async findUserById(userId: string) {
+    return this.user.findFirst({
+      where: {
+        id: userId,
+      },
+    });
+  }
+
   private async ensureAdminUserExists(): Promise<void> {
     const foundedUser = this.findUserByEmail(this.admin_user.email);
     if (!foundedUser) {
