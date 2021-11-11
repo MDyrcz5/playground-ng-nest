@@ -4,17 +4,17 @@ import { Field, ObjectType } from '@nestjs/graphql';
 @ObjectType()
 export class Restaurant {
   @Field({ nullable: true })
-  id?: String;
+  id?: string;
 
   @Field({ nullable: true })
-  name?: String;
+  name?: string;
 
   @Field({ nullable: true })
-  description?: String;
+  description?: string;
 
   @Field({ nullable: true })
-  imageUrl?: String;
+  imageUrl?: string;
 
-  @Field({ nullable: true })
+  @Field((type) => User, { nullable: true })
   author?: User;
 }
