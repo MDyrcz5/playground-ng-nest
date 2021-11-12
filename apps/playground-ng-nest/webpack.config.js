@@ -19,6 +19,7 @@ sharedMappings.register(
   tsConfigPath,
   [
     /* mapped paths to share */
+    '@playground-ng-nest/auth'
   ],
   workspaceRootPath,
 )

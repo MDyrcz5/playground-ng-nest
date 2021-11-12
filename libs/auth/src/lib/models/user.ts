@@ -3,10 +3,10 @@ import { Field, ObjectType } from '@nestjs/graphql';
 @ObjectType()
 export class User {
   @Field()
-  id: string;
+  id!: string;
 
   @Field()
-  email: string;
+  email!: string;
 
   @Field({ nullable: true })
   firstName?: string;
@@ -14,5 +14,5 @@ export class User {
   @Field({ nullable: true })
   lastName?: string;
 
-  password: string;
+  password!: string;
 }

@@ -4,8 +4,8 @@ import { User } from './user';
 @ObjectType()
 export class UserToken {
   @Field()
-  token: String;
+  token!: String;
 
   @Field()
-  user: User;
+  user!: User;
 }
