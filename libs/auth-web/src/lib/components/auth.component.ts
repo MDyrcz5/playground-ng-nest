@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'auth-lib-component',
+  selector: 'auth-component',
   template: `<div>
     Auth component <br />
     {{ message }}

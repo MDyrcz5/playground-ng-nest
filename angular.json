@@ -91,6 +91,29 @@
       },
       "tags": []
     },
+    "auth-web": {
+      "projectType": "library",
+      "root": "libs/auth-web",
+      "sourceRoot": "libs/auth-web/src",
+      "prefix": "playground-ng-nest",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/auth-web"],
+          "options": {
+            "jestConfig": "libs/auth-web/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/auth-web/src/**/*.ts", "libs/auth-web/src/**/*.html"]
+          }
+        }
+      },
+      "tags": []
+    },
     "core": {
       "root": "libs/core",
       "sourceRoot": "libs/core/src",

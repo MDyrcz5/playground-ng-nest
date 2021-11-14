@@ -3,7 +3,6 @@ import { DataService } from 'libs/data/src/lib/data.service';
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { AuthLoginInput, AuthRegisterInput, JwtDto } from './dto';
 import { JwtService } from '@nestjs/jwt';
-import { User } from '@playground-ng-nest/auth';
 
 @Injectable()
 export class AuthService {
