@@ -318,6 +318,24 @@
   dependencies:
     tslib "^2.2.0"
 
+"@apollo/client@^3.4.17":
+  version "3.4.17"
+  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.4.17.tgz#4972e19a49809e16d17c5adc67f45623a6dac135"
+  integrity sha512-MDt2rwMX1GqodiVEKJqmDmAz8xr0qJmq5PdWeIt0yDaT4GOkKYWZiWkyfhfv3raTk8PyJvbsNG9q2CqmUrlGfg==
+  dependencies:
+    "@graphql-typed-document-node/core" "^3.0.0"
+    "@wry/context" "^0.6.0"
+    "@wry/equality" "^0.5.0"
+    "@wry/trie" "^0.3.0"
+    graphql-tag "^2.12.3"
+    hoist-non-react-statics "^3.3.2"
+    optimism "^0.16.1"
+    prop-types "^15.7.2"
+    symbol-observable "^4.0.0"
+    ts-invariant "^0.9.0"
+    tslib "^2.3.0"
+    zen-observable-ts "~1.1.0"
+
 "@apollo/client@~3.2.5 || ~3.3.0 || ~3.4.0":
   version "3.4.16"
   resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.4.16.tgz#67090d5655aa843fa64d26f1913315e384a5fa0f"
@@ -1503,7 +1521,7 @@
   dependencies:
     tslib "~2.3.0"
 
-"@graphql-typed-document-node/core@^3.0.0":
+"@graphql-typed-document-node/core@^3.0.0", "@graphql-typed-document-node/core@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@graphql-typed-document-node/core/-/core-3.1.0.tgz#0eee6373e11418bfe0b5638f654df7a4ca6a3950"
   integrity sha512-wYn6r8zVZyQJ6rQaALBEln5B1pzxb9shV5Ef97kTvn6yVGrqyXVnDqnU24MXnFubR+rZjBY9NWuxX3FB2sTsjg==
@@ -3137,6 +3155,16 @@ anymatch@^3.0.3, anymatch@~3.1.2:
   dependencies:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
+
+apollo-angular@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/apollo-angular/-/apollo-angular-2.6.0.tgz#3c8d5732c91aeabe6566fda8db0155a6a1ddca17"
+  integrity sha512-PxlOlYbJB39mKAIMX24twrrM+1qm+o7OIdvtiJJB4MSlDFdlKR6yCrZdxpvoHFRoK1vWl23g4GiLrf8bNyJuyQ==
+  dependencies:
+    "@graphql-typed-document-node/core" "^3.1.0"
+    extract-files "^9.0.0"
+    semver "^7.0.0"
+    tslib "^2.0.0"
 
 apollo-datasource@^3.3.0:
   version "3.3.0"
@@ -5590,6 +5618,11 @@ extglob@^2.0.4:
     regex-not "^1.0.0"
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
+
+extract-files@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/extract-files/-/extract-files-9.0.0.tgz#8a7744f2437f81f5ed3250ed9f1550de902fe54a"
+  integrity sha512-CvdFfHkC95B4bBBk36hcEmvdR2awOdhhVUYH6S/zrVj3477zven/fJMYg7121h4T1xHZC+tetUpubpAhxwI7hQ==
 
 extract-zip@2.0.1:
   version "2.0.1"
