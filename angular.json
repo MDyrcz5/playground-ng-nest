@@ -137,6 +137,29 @@
       },
       "tags": []
     },
+    "core-web": {
+      "projectType": "library",
+      "root": "libs/core-web",
+      "sourceRoot": "libs/core-web/src",
+      "prefix": "playground-ng-nest",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/core-web"],
+          "options": {
+            "jestConfig": "libs/core-web/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/core-web/src/**/*.ts", "libs/core-web/src/**/*.html"]
+          }
+        }
+      },
+      "tags": []
+    },
     "data": {
       "root": "libs/data",
       "sourceRoot": "libs/data/src",
