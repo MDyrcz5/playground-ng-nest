@@ -21,6 +21,7 @@
       "@playground-ng-nest/core": ["libs/core/src/index.ts"],
       "@playground-ng-nest/data": ["libs/data/src/index.ts"],
       "@playground-ng-nest/restaurant": ["libs/restaurant/src/index.ts"],
+      "@playground-ng-nest/shared-web": ["libs/shared-web/src/index.ts"],
       "@playground-ng-nest/test": ["libs/test/src/index.ts"]
     }
   },
