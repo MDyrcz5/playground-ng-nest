@@ -12,11 +12,10 @@ export const APP_ROUTES: Routes = [
     path: 'auth',
     loadChildren: () => import(`@playground-ng-nest/auth-web`).then((m) => m.AuthWebModule),
   },
-  // {
-  //   path: 'restaurants',
-  //   loadChildren: () => import('restaurants/Module').then(m => m.RestaurantModule)
-  // },
-
+  {
+    path: 'restaurants',
+    loadChildren: () => import('restaurant_mfe/Module').then((m) => m.RemoteEntryModule),
+  },
   {
     path: '**',
     component: NotFoundComponent,

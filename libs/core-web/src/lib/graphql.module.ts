@@ -8,7 +8,7 @@ import { HttpLink } from 'apollo-angular/http';
 const uri = 'http://localhost:3333/graphql'; // change it to proper after try outs
 
 @NgModule({
-  imports: [BrowserModule, HttpClientModule],
+  imports: [HttpClientModule],
   providers: [
     {
       provide: APOLLO_OPTIONS,

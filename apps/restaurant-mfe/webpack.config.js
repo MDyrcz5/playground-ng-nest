@@ -26,7 +26,7 @@ sharedMappings.register(
 module.exports = {
   output: {
     uniqueName: 'restaurant-mfe',
-    publicPath: 'auto',
+    publicPath: 'auto'
   },
   optimization: {
     runtimeChunk: false,
@@ -39,7 +39,7 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'restaurant-mfe',
+      name: 'restaurant_mfe',
       filename: 'remoteEntry.js',
       exposes: {
         './Module': 'apps/restaurant-mfe/src/app/remote-entry/entry.module.ts',

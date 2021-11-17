@@ -1,1 +1,1 @@
-declare module 'restaurant-mfe/Module';
+declare module 'restaurant_mfe/Module';
