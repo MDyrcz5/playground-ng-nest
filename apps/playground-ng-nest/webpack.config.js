@@ -1,6 +1,6 @@
-const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin')
-const mf = require('@angular-architects/module-federation/webpack')
-const path = require('path')
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+const mf = require('@angular-architects/module-federation/webpack');
+const path = require('path');
 
 /**
  * We use the NX_TSCONFIG_PATH environment variable when using the @nrwl/angular:webpack-browser
@@ -11,17 +11,18 @@ const path = require('path')
  * This NX_TSCONFIG_PATH environment variable is set by the @nrwl/angular:webpack-browser and it contains
  * the location of the generated temporary tsconfig file.
  */
-const tsConfigPath = process.env.NX_TSCONFIG_PATH ?? path.join(__dirname, '../../tsconfig.base.json')
+const tsConfigPath = process.env.NX_TSCONFIG_PATH ?? path.join(__dirname, '../../tsconfig.base.json');
 
-const workspaceRootPath = path.join(__dirname, '../../')
-const sharedMappings = new mf.SharedMappings()
+const workspaceRootPath = path.join(__dirname, '../../');
+const sharedMappings = new mf.SharedMappings();
 sharedMappings.register(
   tsConfigPath,
   [
     /* mapped paths to share */
+    '@playground-ng-nest/auth-web',
   ],
   workspaceRootPath,
-)
+);
 
 module.exports = {
   output: {
@@ -39,7 +40,9 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      remotes: {},
+      remotes: {
+        'restaurant_mfe': 'restaurant_mfe@http://localhost:4201/remoteEntry.js',
+      },
       shared: {
         '@angular/core': { singleton: true, strictVersion: true },
         '@angular/common': { singleton: true, strictVersion: true },
@@ -50,4 +53,4 @@ module.exports = {
     }),
     sharedMappings.getPlugin(),
   ],
-}
+};

@@ -10,16 +10,20 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": ["es2017", "dom", "esnext.asynciterable"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "@playground-ng-nest/api-interfaces": ["libs/api-interfaces/src/index.ts"],
       "@playground-ng-nest/auth": ["libs/auth/src/index.ts"],
+      "@playground-ng-nest/auth-web": ["libs/auth-web/src/index.ts"],
       "@playground-ng-nest/core": ["libs/core/src/index.ts"],
+      "@playground-ng-nest/core-web": ["libs/core-web/src/index.ts"],
       "@playground-ng-nest/data": ["libs/data/src/index.ts"],
-      "@playground-ng-nest/restaurant": ["libs/restaurant/src/index.ts"]
+      "@playground-ng-nest/restaurant": ["libs/restaurant/src/index.ts"],
+      "@playground-ng-nest/shared-web": ["libs/shared-web/src/index.ts"],
+      "@playground-ng-nest/test": ["libs/test/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
