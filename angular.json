@@ -281,7 +281,7 @@
         "serve-mfe": {
           "builder": "@nrwl/workspace:run-commands",
           "options": {
-            "commands": ["nx serve playground-ng-nest"]
+            "commands": ["nx serve restaurant-mfe", "nx serve playground-ng-nest"]
           }
         }
       },
@@ -337,6 +337,131 @@
         }
       },
       "tags": []
+    },
+    "restaurant-mfe": {
+      "projectType": "application",
+      "root": "apps/restaurant-mfe",
+      "sourceRoot": "apps/restaurant-mfe/src",
+      "prefix": "playground-ng-nest",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:webpack-browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/restaurant-mfe",
+            "index": "apps/restaurant-mfe/src/index.html",
+            "main": "apps/restaurant-mfe/src/main.ts",
+            "polyfills": "apps/restaurant-mfe/src/polyfills.ts",
+            "tsConfig": "apps/restaurant-mfe/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": ["apps/restaurant-mfe/src/favicon.ico", "apps/restaurant-mfe/src/assets"],
+            "styles": ["apps/restaurant-mfe/src/styles.scss"],
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "apps/restaurant-mfe/webpack.config.js"
+            }
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/restaurant-mfe/src/environments/environment.ts",
+                  "with": "apps/restaurant-mfe/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "customWebpackConfig": {
+                "path": "apps/restaurant-mfe/webpack.prod.config.js"
+              }
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@nrwl/angular:webpack-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "restaurant-mfe:build:production"
+            },
+            "development": {
+              "browserTarget": "restaurant-mfe:build:development"
+            }
+          },
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 4201
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "restaurant-mfe:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/restaurant-mfe/src/**/*.ts", "apps/restaurant-mfe/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/restaurant-mfe"],
+          "options": {
+            "jestConfig": "apps/restaurant-mfe/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "restaurant-mfe-e2e": {
+      "root": "apps/restaurant-mfe-e2e",
+      "sourceRoot": "apps/restaurant-mfe-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/restaurant-mfe-e2e/cypress.json",
+            "devServerTarget": "restaurant-mfe:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "restaurant-mfe:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/restaurant-mfe-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["restaurant-mfe"]
     },
     "shared-web": {
       "projectType": "library",

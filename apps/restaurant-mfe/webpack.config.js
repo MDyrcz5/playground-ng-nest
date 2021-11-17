@@ -19,14 +19,13 @@ sharedMappings.register(
   tsConfigPath,
   [
     /* mapped paths to share */
-    '@playground-ng-nest/auth-web',
   ],
   workspaceRootPath,
 );
 
 module.exports = {
   output: {
-    uniqueName: 'playground-ng-nest',
+    uniqueName: 'restaurant-mfe',
     publicPath: 'auto',
   },
   optimization: {
@@ -40,15 +39,16 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      remotes: {
-        'restaurant-mfe': 'restaurant-mfe@http://localhost:4201/remoteEntry.js',
+      name: 'restaurant-mfe',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './Module': 'apps/restaurant-mfe/src/app/remote-entry/entry.module.ts',
       },
       shared: {
         '@angular/core': { singleton: true, strictVersion: true },
         '@angular/common': { singleton: true, strictVersion: true },
         '@angular/common/http': { singleton: true, strictVersion: true },
         '@angular/router': { singleton: true, strictVersion: true },
-        '@angular/forms': { singleton: true, strictVersion: true },
         ...sharedMappings.getDescriptors(),
       },
     }),
